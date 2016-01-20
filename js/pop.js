@@ -20,7 +20,7 @@ $(function () {
      
      PL.open({
         title: '警告',
-        content: '您确定要删除所有数据吗',
+        content: '您确定要删除所有设置保存的数据吗',
         btn: ['嗯', '不要'],
         yes: function(index){
             clearDB();

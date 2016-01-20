@@ -444,6 +444,37 @@ function DBinfoList(_tb,callback){
  
 
  
+//  获取 帐号名称
+function getSetUnameF(callback){
+    
+    chrome.storage.sync.get('setUname', function(data) { 
+        
+        if(data.setUname){
+            callback(data.setUname);
+        }else{
+            callback(false);
+        }
+
+    })   
+}
+ 
+
+ 
+ //  设置 帐号名称
+function setUnameF(name){
+    var obj = {};
+    obj.setUname = name;
+    chrome.storage.sync.set(obj, function(data) { 
+        
+ 
+    })   
+    
+}
+
+
+
+
+ 
 //  获取 抓取间隔时间
 function getSetTimeoutF(callback){
     
