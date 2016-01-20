@@ -528,8 +528,9 @@ function setNumberTypeF(ntype,callback){
 }
 
 // 设置 form 配置
-function setFormALl(time,ntype,callback){
+function setFormALl(uname,time,ntype,callback){
     var obj = {};
+    obj.setUname = uname;
     obj.setTimeout = time;
     obj.NumberType = ntype;
     chrome.storage.sync.set(obj, function(data) { 

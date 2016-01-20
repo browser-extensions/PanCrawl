@@ -14,9 +14,28 @@ $(function () {
   $("#addOrderId").on("click",function(){
      addOrderCode();
   });
+  
+//获取订单号
+  $("#getOrderId").on("click",function(){
+     
+     getSetUnameF(function(data){
+         
+         if(data){
+                console.log(data);
+         }else{
+             PL.open({
+                content: '您还为设置帐号',
+                time: 2
+            });
+            
+            $("#first_name").focus();
+         }
+     })
+     
+     
+  });
 //清除
   $("#clearId").on("click",function(){
-     
      
      PL.open({
         title: '警告',
