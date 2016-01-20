@@ -37,7 +37,7 @@
     "content_scripts": [
         {
             "matches": [
-                "*://buyertrade.taobao.com/*",
+                "*://buyertrade.taobao.com/trade/detail/trade_item_detail.htm*",
                 "*://trade.tmall.com/detail/orderDetail.htm?*"         
             ],
             "js": [
