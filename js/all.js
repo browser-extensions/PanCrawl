@@ -393,23 +393,20 @@ function readerList(data){
    
    for(var i=0;i<data.length;i++){
        
-       var msg = '--';
-       if(data[i].UMsg){
-          msg =  data[i].UMsg;
-       }
-        //  str = str + '<tr>'+
-        //             '<td><a class="del" >x</a>'+ data[i].Ocode +'</td>'+
-        //             '<td>'+ data[i].Zcode +'</td>'+
-        //             '<td>'+ data[i].uName +'</td>'+
-        //             '<td>'+ msg +' </td>'+
-        //             '<td>'+ data[i].Ycode +'</td>'+
-        //             '<td>'+ data[i].Ycop +'</td>'+
-        //        '</tr>';
+   
+         str = str + '<tr>'+
+                    '<td>'+ data[i].Ocode +'</td>'+
+                    '<td>'+ data[i].Zcode +'</td>'+
+                    '<td>'+ data[i].uName +'</td>'+
+                    '<td>'+ data[i].UMsg +' </td>'+
+                    '<td>'+ data[i].Ycode +'</td>'+
+                    '<td>'+ data[i].Ycop +'</td>'+
+               '</tr>';
        
        
    }
    
-  // PD('.order-tbody').html(str);
+   PD('.order-tbody').html(str);
      
 }
 

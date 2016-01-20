@@ -84,11 +84,12 @@ function sedReload(){
 chrome.runtime.onMessage.addListener(function(request, sender, sendRequest){
 	if(request.type!=="taobao-information")
 	return;
-    
+        
      var str = '<tr>'+
                 '<td>'+ request.Ocode +'</td>'+
                 '<td>'+ request.Zcode +'</td>'+
                 '<td>'+ request.uName +'</td>'+
+                '<td>'+ request.UMsg +' </td>'+
                 '<td>'+ request.Ycode +'</td>'+
                 '<td>'+ request.Ycop +'</td>'+
                 '</tr>';

@@ -48,7 +48,7 @@ PD(function () {
         
     
     
-  postOrderInfoServer();
+//   postOrderInfoServer();
     
     
 })
