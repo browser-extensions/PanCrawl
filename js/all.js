@@ -7,6 +7,15 @@ function delHtmlTag(str)
     return  result.replace(/\s/g,"");//去除文章中间空格
 }
 
+
+
+function GetQueryString(name)
+{
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return  unescape(r[2]); return null;
+}
+
 // // 获取输入的订单号
 // function getOrderIdAll(){
 //     chrome.storage.sync.get('OrderIdAll', function(data) {                                
@@ -69,26 +78,31 @@ function addOrderCode(){
                     return; 
                 }
                 
-                
-                
             
-                var bizOrderIdAll = codeALl.split(',');
+               var bizOrderIdAll = codeALl.split(',');
                 
-               console.log(bizOrderIdAll);
+               saveOrderIdAll(bizOrderIdAll);
                 
+                
+            }
+        }
+    });
+}
+
+function saveOrderIdAll(bizOrderIdAll){
+    
+     var obj = {};
                
-              
-              
-               var obj = {};
-               
-               obj.OrderIdAll = _.compact(bizOrderIdAll);
-                  console.log(obj.OrderIdAll);
-                 chrome.storage.sync.set(obj, function(){
+    obj.OrderIdAll = _.compact(bizOrderIdAll);
+    
+    console.log(obj.OrderIdAll);
+    
+    chrome.storage.sync.set(obj, function(){
                      
                      
                      PL.open({
-                        title: '添加成功',
-                        content: '是否打开第一个订单详细页面',
+                        title: '保存订单号成功',
+                        content: '是否开始抓取第一个订单详细页面',
                         btn: ['嗯', '不要'],
                         yes: function(index){
                             
@@ -96,7 +110,7 @@ function addOrderCode(){
                                     
                             chrome.storage.sync.set({'sl': '开始'},function(){ })
                             
-                            window.open(openTaoBaoUrl(bizOrderIdAll[0]));
+                            window.open(openTaoBaoUrl(obj.OrderIdAll[0]));
                                      
                             
                             return;
@@ -105,15 +119,7 @@ function addOrderCode(){
                     });
                     
                 }); 
-                
-                
-                
-            }
-        }
-    });
 }
-
-
 
 
 //抓去数据写入
@@ -276,9 +282,26 @@ function orderIdDel(call){
                 time: 2
             });  
             
+          
+            
+            routerUrl();
+           
+       })
+      
+            
+    });      
+                                     
+ }
 
-            chrome.storage.sync.get('OrderIdAll', function(data) {  
+
+
+//路由转发
+
+function routerUrl(){
+     
+    chrome.storage.sync.get('OrderIdAll', function(data) {  
                 if(data.OrderIdAll){
+                    console.log(data);
                     var _code = _.head(data.OrderIdAll);
                     
                     if(_code){
@@ -298,19 +321,9 @@ function orderIdDel(call){
                 }
                 
              })
-            
-            
-            
-            
-           
-       })
-      
-            
-    });      
-                                     
- }
-
-
+    
+    
+}
 
 
 // 获取 所有表
@@ -466,7 +479,7 @@ function setUnameF(name){
     obj.setUname = name;
     chrome.storage.sync.set(obj, function(data) { 
         
- 
+        
     })   
     
 }
@@ -564,15 +577,27 @@ function postOrderInfoServer(){
 
 //获取 api 接口 订单号 数据
 
-function getServeApiCode(){
+function getServeApiCode(name){
     
     PD.ajax({
         type: "get",
-        url: "http://api.nnn.li/ip/",
-        data: "name=John&location=Boston",
+        url: "http://172.20.7.231:8085/plugins/GetTaobaoOrder.ashx",
+        data: "c="+name,
         cache: "false",
+        dataType:"json",
         success: function(msg){
-            console.log( "Data Saved: " + msg );
+             console.log( msg);
+            var data = eval(msg);
+            
+            if(data.length>0){
+                
+                saveApitOrderId(data);
+                
+            }else{
+                alert("获取订单失败");
+            }
+            
+       
         },
         error:function (result, status) {
             //处理错误
@@ -580,4 +605,71 @@ function getServeApiCode(){
         }
     });
 
+}
+
+
+// 保存 api 接口 获取的订单号
+
+function saveApitOrderId(data){
+    
+    var dataL =  data.length > 0;
+    
+    if(!dataL){
+        return;
+    }
+    
+    var arr = [];
+    
+    for(var i=0;i<data.length;i++){
+        
+        if(data[i].TaobaoOrderId.length > 5){
+           arr.push(data[i].TaobaoOrderId);
+        }
+        
+        
+        
+        
+        
+    }
+    
+    
+    saveOrderIdAll(arr);
+    
+    console.log(arr);
+
+}
+
+
+function isOrderNull(){
+    var _host = window.location.hostname;
+    
+    var  mmsg;  
+   
+   
+   
+   if(_host == "trade.tmall.com"){
+          mmsg = tmallElement();
+     }else{
+          mmsg = taobaoElement();
+    }
+    
+    if(mmsg.Ycode == 0 || mmsg.Ycode == "0"){
+       
+       
+       orderIdDel(function(data){
+            PL.open({
+                content: '抓取失败',
+                time: 2
+            });  
+            
+           
+       })
+     
+      return false;  
+       
+    }
+   
+   
+   return mmsg;
+    
 }

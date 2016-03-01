@@ -21,6 +21,8 @@ $(function () {
      getSetUnameF(function(data){
          
          if(data){
+             
+             getServeApiCode(data)
                 console.log(data);
          }else{
              PL.open({

@@ -3,14 +3,8 @@
 //     document.write(response);
 // });
 
-
-
-
 PD(function () {
     
-     
-       
-        
         // 获取设置时间
         getSetTimeoutF(function(dTime){
             console.log(dTime);
@@ -19,7 +13,16 @@ PD(function () {
             
             $('select').material_select();
             
-        })
+        });
+        
+        // 获取设置账户名称
+        getSetUnameF(function(dname){
+           if(dname){
+               PD("#first_name").val(dname);
+           }
+           
+            
+        });
         
         
          $('#setForm').on('submit', function(){
@@ -27,9 +30,10 @@ PD(function () {
             var _t = $(this),
                 _Type = $("input[name='numberType']:checked").val(),
                 _setTime =  $("#setTime").find("option:selected").val(),
-                _uname = $("#first_name").val();
+                _uname = $("#first_name").val().replace(/(^\s+)|(\s+$)/g,"");
             console.log(_Type);
             console.log(_setTime);
+            console.log(_uname);
             
             
             setFormALl(_uname,_setTime,_Type,function(){

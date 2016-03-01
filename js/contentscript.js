@@ -52,17 +52,15 @@ function startL(){
 
 function sedPosMsg(){ 
    
-    var _host = window.location.hostname;
-    
-    var  mmsg;    
-    
-
-    
-    if(_host == "trade.tmall.com"){
-          mmsg = tmallElement();
-     }else{
-          mmsg = taobaoElement();
-    }
+     if(isOrderNull() == false){
+        
+      
+          routerUrl();
+         
+         return
+     }  
+     
+     var mmsg = isOrderNull();
      
     chrome.runtime.sendMessage(mmsg);
  
@@ -87,8 +85,7 @@ function sedPosMsg(){
             }
             
             var _code = data.OrderIdAll[0];
-            console.log(_code);
-            console.log(data.OrderIdAll);
+           
             if(_code){
                 dBOrderTbIndex(_code,mmsg);
             }        
@@ -158,14 +155,25 @@ function taobaoElement(){
 
     var uname = PD.trim(PD('.addr_and_note').find('dd').text()).split('，')[0];
     
+   var OcodeT = YcodeT = ZcodeT = UMsgT = YcopT = 0;
+    
+    var OcodeLen = PD('.misc-info').text().length;
+    if(OcodeLen > 0){
+        OcodeT = PD.trim(PD('.misc-info').text()).replace(/\n/g,'||').split('||')[4],
+        YcodeT = PD.trim(PD('.logistics-id').text()),
+        ZcodeT = PD.trim(PD('.misc-info').text()).replace(/\n/g,'||').split('||')[8],
+        UMsgT = PD('#J_ExistMessage').text(),
+        YcopT = PD.trim(PD('.logistics-company').text());
+    }
+    
     var msg = {
         type: "taobao-information",           
         uName : uname,
-        Ocode : PD.trim(PD('.misc-info').text()).replace(/\n/g,'||').split('||')[4],
-        Ycode : PD.trim(PD('.logistics-id').text()),
-        Zcode : PD.trim(PD('.misc-info').text()).replace(/\n/g,'||').split('||')[8],
-        UMsg : PD('#J_ExistMessage').text(),
-        Ycop : PD.trim(PD('.logistics-company').text())
+        Ocode : OcodeT,
+        Ycode : YcodeT,
+        Zcode : ZcodeT,
+        UMsg : UMsgT,
+        Ycop : YcopT
      };
        
         
