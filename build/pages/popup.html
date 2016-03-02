@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" href="/css/style.css">   
+    <script src="/libs/jquery.min.js"></script>
+     <script src="/libs/materialize/js/materialize.min.js"></script>
+    <script src="/libs/panli.js"></script>
+    <script src="/libs/lodash.js"></script>
+    <script src="/js/all.js"></script>
+    <script src="/js/pop.js"></script>
+    <title>淘宝订单信息</title>
+</head>
+<body class="popup">
+<div class="inner">
+    <h1>淘宝订单信息
+        <small>
+         <!--<a class="waves-effect waves-light btn" id="openPageId"  title="打开页面">打开页面</a>-->
+         <a class="waves-effect waves-light btn" id="startId" title="开始">开始</a>
+         <a class="waves-effect waves-light btn" id="stopId"  title="停止">停止</a>
+         <a class="waves-effect waves-light btn" id="clearId"  title="清除">清除</a>
+         <a class="waves-effect waves-light btn" id="addOrderId"  title="添加订单号">添加订单号</a>
+         <a href="/pages/option.html" class="waves-effect waves-light btn" id="moreId" target="_blank" title="更多配置">更多配置</a>
+        </small>
+    </h1>
+    
+    <div class="table-wrap">
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th data-field="id">订单号</th>
+                    <th data-field="zid">支付宝交易号</th>
+                    <th data-field="name">用户名</th>
+                    <th data-field="msg">买家留言</th>
+                    <th data-field="code">运单号</th>
+                    <th data-field="cot">物流公司</th>
+                </tr>
+            </thead>
+
+            <tbody class="order-tbody order-tbody-pop">
+                
+            </tbody>
+        </table>        
+    </div>
+</div>
+</body>
+</html>
