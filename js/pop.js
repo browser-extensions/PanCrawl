@@ -18,12 +18,17 @@ $(function () {
 //获取订单号
   $("#getOrderId").on("click",function(){
      
+     PL.open({
+        type: 2,
+        content: ''
+    });
+     
      getSetUnameF(function(data){
          
          if(data){
              
              getServeApiCode(data)
-                console.log(data);
+             console.log(data);
          }else{
              PL.open({
                 content: '您还为设置帐号',
@@ -36,6 +41,48 @@ $(function () {
      
      
   });
+  
+  
+  
+  $("input[name=numberType]").click(function(){
+       
+     var typ =  $("input[name=numberType]:checked").val();
+     
+     var urlJson = {
+         panli : ["http://houtai.panli.com/plugins/GetTaobaoOrder.ashx",
+         "http://houtai.panli.com/plugins/SaveTaobaoLogisticsInfo.ashx"],
+         Wiwaa : ["http://hezuo.panli.com/plugins/GetTaobaoOrder.ashx",
+         "http://hezuo.panli.com/plugins/SaveTaobaoLogisticsInfo.ashx"]         
+     };
+     
+     
+     
+     
+       
+      if(typ == "1"){
+          $("#getDataUrl").val(urlJson.panli[0]);
+          $("#postDataUrl").val(urlJson.panli[1]);
+          
+      }else{
+         $("#getDataUrl").val(urlJson.Wiwaa[0]);
+          $("#postDataUrl").val(urlJson.Wiwaa[1]); 
+      }
+       
+        
+   });
+  
+//   Wiwaa系统获取和保存地址
+//http://hezuo.panli.com/plugins/GetTaobaoOrder.ashx
+//http://hezuo.panli.com/plugins/SaveTaobaoLogisticsInfo.ashx
+
+
+// panli 系统获取和保存地址
+// http://houtai.panli.com/plugins/GetTaobaoOrder.ashx
+// http://houtai.panli.com/plugins/SaveTaobaoLogisticsInfo.ashx
+
+
+
+  
 //清除
   $("#clearId").on("click",function(){
      
@@ -133,8 +180,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendRequest){
     
     var obj = {"OrderId": request.Ocode.replace(/(^\s+)|(\s+$)/g,""),
                 "PayId":request.Zcode.replace(/(^\s+)|(\s+$)/g,""),
-                "CompanyName":request.Ycop.replace(/(^\s+)|(\s+$)/g,""),
-                "PackageNum":request.Ycode.replace(/(^\s+)|(\s+$)/g,""),
+                "CompanyName":request.Ycop,
+                "PackageNum":request.Ycode,
                 "BuyMessage":request.UMsg
                 }
         
@@ -147,12 +194,13 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendRequest){
                 '<td>'+ request.Ycop +'</td>'+
                 '</tr>';
               
+    $(".order-tbody").append(str);
     
     
-    
-    postOrderInfoServer(obj,function(data){
+    postOrderInfoServer(obj,function(data){ 
         
-        $(".order-tbody").append(str);
+          
+        
     })
     
 

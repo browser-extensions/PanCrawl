@@ -9,6 +9,12 @@
     <script src="/libs/panli.js"></script>
     <script src="/libs/lodash.js"></script>
     <script src="/js/all.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/get.js"></script>
+    <script src="/js/save.js"></script>
+    <script src="/js/url.js"></script>
+    <script src="/js/db.js"></script>
+    <script src="/js/reader.js"></script>
     <script src="/js/pop.js"></script>
     <script src="/js/option.js"></script>
     <title>淘宝订单信息详细页</title>
@@ -36,19 +42,21 @@
                     <option value="12000">12秒</option>
                     <option value="15000">15秒</option>
                     <option value="20000">20秒</option>
+                    <option value="30000">30秒</option>
+                    <option value="40000">40秒</option>
                 </select>
         
         </div>
-        <div class="" style="width:200px;display: none;">
+        <div class="" style="width:200px;display: inline-block;">
                 选择账户类型
                 <p>
                     <span>
-                        <input name="numberType" value="1"  checked="true" type="radio" id="numberType1" />
-                        <label for="numberType1">panli</label>
+                        <input name="numberType" value="1"  type="radio" id="numberType1" />
+                        <label for="numberType1">Panli</label>
                     </span>                
                     <span>
                         <input name="numberType" value="2" type="radio" id="numberType2" />
-                        <label for="numberType2">wa</label>
+                        <label for="numberType2">Wiwaa</label>
                     </span>
                 </p>
         </div>
@@ -100,7 +108,7 @@
         </li>       
         <li>
             <span class="cp">
-                当前版本： <a href="javascript:void(0);"  >0.0.2</a>
+                当前版本： <a href="javascript:void(0);"  >0.0.3</a>
             </span>
         </li>
          <li>

@@ -37,6 +37,18 @@ PD(function () {
         });
         
         
+        // 获取账户类型
+        getSetNumberTypeF(function(type){
+            if(type){
+                
+                $('input:radio[value='+ type +']').attr('checked','true');
+                
+               console.log(type)
+           }
+         
+        });
+        
+        
          $('#setForm').on('submit', function(){
             
             var _t = $(this),
