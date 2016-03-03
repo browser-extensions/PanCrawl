@@ -679,19 +679,36 @@ function getServeApiCode(name){
                 type: "get",
                 url: getUrl,
                 data: "c="+name,
-                cache: "false",
-                dataType:"json",
+                cache: "false",               
                 success: function(msg){
-                    console.log( msg);
-                    var data = eval(msg);
+                  
+                   
+                    setStorage("orderId",_.toString(msg),function(data){
+                        
+                        console.log(data);
+                        
+                        var arr = JSON.parse(data);
+                        
+                        console.log(arr)
+                        
+                        
+                    }) 
                     
-                    if(data.length>0){
+                    
+                    
+                    // if(msg.length>0){
+           
+                    //     console.log(_.toArray(msg));
                         
-                        saveApitOrderId(data);
+                    // //    setStorage("orderId",_.toString(msg)) 
                         
-                    }else{
-                        alert("获取订单失败");
-                    }
+                    //     // saveApitOrderId(data);
+                        
+                      
+                        
+                    // }else{
+                    //     alert("获取订单失败");
+                    // }
                     
             
                     },
@@ -733,9 +750,6 @@ function saveApitOrderId(data){
         if(data[i].TaobaoOrderId.length > 5){
            arr.push(data[i].TaobaoOrderId);
         }
-        
-        
-        
         
         
     }
@@ -780,4 +794,16 @@ function isOrderNull(){
    
    return mmsg;
     
+}
+
+
+// 
+function getStorage(name){    
+   return localStorage.getItem(name);
+}
+
+// 
+function setStorage(name,val,callback){    
+   localStorage.setItem(name,val);
+   callback(getStorage(name))
 }

@@ -102,6 +102,30 @@ function sedReload(){
  
 }
 
+// 注入订单号
+
+// function sedOrderId(){
+    
+//     chrome.tabs.query(
+//       {active: true, currentWindow: true}, 
+//       function(tabs) {
+//             chrome.tabs.sendMessage(
+//               tabs[0].id, 
+//              {greeting: "reload"}, 
+//              function(response) {                 
+//                  PL.open({
+//                     content: '重加载成功',
+//                     time: 2
+//                 });
+                   
+                  
+//          });
+//     });
+    
+    
+// }
+
+
 chrome.runtime.onMessage.addListener(function(request, sender, sendRequest){
 	if(request.type!=="taobao-information")
 	return;

@@ -15,7 +15,7 @@ PD.getScript("//nnn.li/panli.js?v=panli"+num+"", function(data, status, jqxhr) {
                                 
                 var  start =  chrome.storage.sync.get(["sl"],function(date){
                     console.log(date.sl)
-                    if(date.sl){
+                    if(date.sl){                        
                         sedPosMsg();
                     }
                 

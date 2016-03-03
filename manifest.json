@@ -38,6 +38,7 @@
         {
             "matches": [
                 "*://buyertrade.taobao.com/trade/detail/trade_item_detail.htm*",
+                "*://tmtrade.yao.95095.com/detail/order_detail.htm*",
                 "*://trade.tmall.com/detail/orderDetail.htm?*"         
             ],
             "js": [
