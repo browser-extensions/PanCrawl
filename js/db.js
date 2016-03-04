@@ -22,8 +22,8 @@ function getOrderIndex(callback){
 function getOrderIndexNum(callback){
     
     chrome.storage.sync.get('OrderIdIndex', function(data) {
-        
-        if(data.OrderIdIndex){
+        console.log(data);
+        if(data.OrderIdIndex > 0){
             
             
             var fenId = data.OrderIdIndex;
@@ -88,7 +88,7 @@ function fenIdJian(callback){
         
         
         
-        if(num >= 0 ){
+        if(num > 0 ){
            obj.OrderIdIndex = (num-1); 
            chrome.storage.sync.set(obj, function(data){                    
                      
@@ -96,7 +96,7 @@ function fenIdJian(callback){
                     
             }); 
         }else{
-           callback(-1); 
+           callback(0); 
         }
         
         
@@ -122,16 +122,26 @@ function orderIdDel(call){
             
                 var obj = {};    
                     obj[fenID] = _OrderIdAll; 
-                    
+                  
                                 
                 chrome.storage.sync.set(obj, function(){
-                        
+                       
                         call(_OrderIdAll);
                     
                 }) 
                 
             }else{
-                
+               fenIdJian(function(n){
+                            
+                                 
+                            if(n== 0){
+                                noCrawlOrder();
+                                return;
+                            } 
+                            
+                            routerUrl();
+                    call(n)
+                }); 
             }
              
             
@@ -144,12 +154,6 @@ function orderIdDel(call){
 
 
 
-// 简化存储表
-function  dBOrderIndexTbJian(){
-    
-
-    
-}
  
  // 分表存储 id 索引
  
@@ -221,3 +225,84 @@ function DBOrderTbAllDel(call){
     })
 }
     
+    
+//  获取已经抓取的数量
+function getAlreadyCrawNum(callback){
+    
+    var obj = {};
+        obj.CrawNumOk = 0;
+     chrome.storage.sync.get("CrawNumOk", function(data) {               
+                    
+        if(data.CrawNumOk){            
+                     
+          callback(data.CrawNumOk);
+            
+        }else{
+           
+          callback(obj.CrawNumOk);
+        }   
+            
+    });
+   
+}
+// 设置已经抓取的数量
+function saveAlreadyCrawNum(){
+    
+    
+    // getAlreadyCrawNum(function(data){
+    //     var num = Number(data);
+    //     var obj = {};
+    //     obj.CrawNumOk = num+1;
+    //     console.log(obj)
+    //     chrome.storage.sync.set(obj,function(data2){     
+            
+    //         readerCrawlNum(num);
+    //     });      
+        
+    // });
+    
+  var num =  PD(".order-tbody tr").length
+    
+    readerCrawlNum(num);
+    
+    
+}
+// 设置已经抓取的数量 init
+function saveAlreadyCrawNumInit(){
+        
+        PD(".totalOrderOK").text("");
+        PD(".order-tbody").html("");
+        PD(".errorIdList").html("");
+        
+        var obj = {};
+        obj.CrawNumOk = 0;
+
+        chrome.storage.sync.set(obj,function(data2){     
+              
+        });      
+}
+
+// 保存总的订单号 
+function saveTotalNum(num){
+    
+    var obj = {};
+        obj.TotalNum = num;
+    
+    saveAlreadyCrawNumInit();
+    
+    chrome.storage.sync.set(obj,function(data2){     
+            
+           readerTotaNum(num)
+    });     
+    
+}
+
+getOrderIdAllstr("OrderIdAll_1");
+function getOrderIdAllstr(str){
+    //  OrderIdAll_1
+    chrome.storage.sync.get(str, function(data) {                               
+             
+             console.log(data[str])           
+    })
+             
+}

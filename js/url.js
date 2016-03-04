@@ -57,7 +57,7 @@ function routerUrlTwo(fenId){
                         fenIdJian(function(n){
                             
                                  
-                            if(n== -1){
+                            if(n== 0){
                                 noCrawlOrder();
                                 return;
                             } 

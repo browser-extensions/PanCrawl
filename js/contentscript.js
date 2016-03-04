@@ -105,7 +105,7 @@ function getFenPianId(fenId,mmsg,tindex){
                 
                fenIdJian(function(n){
                    
-                  if(n== -1){
+                  if(n== 0){
                       noCrawlOrder();
                       return;
                   } 

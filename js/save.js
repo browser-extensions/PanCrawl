@@ -153,7 +153,7 @@ function saveApitOrderId(data){
 function saveOrderIdAll(bizOrderIdAll){
     
      var obj = {},
-          ind = 10;
+          ind = 50;
                
     
     
@@ -161,18 +161,23 @@ function saveOrderIdAll(bizOrderIdAll){
         legt = OrderIdAll.length,
         ltb = Math.ceil(legt/ind);
         
+        saveTotalNum(legt)
         
-        obj.OrderIdIndex = (ltb-1);
         
-    for(var i=0;i<ltb;i++){
         
+        obj.OrderIdIndex = ltb;
+        
+        console.log(obj.OrderIdIndex);
+        
+    for(var i=1;i<=ltb;i++){
+      
         var arr = "OrderIdAll_"+i;
         
         
         obj["OrderIdAll_"+i] = [];
         
         
-        for(var j = i*ind;j<(i+1)*ind;j++){
+        for(var j = (i-1)*ind;j<(i)*ind;j++){
             
             if(OrderIdAll[j]){
               obj["OrderIdAll_"+i].push(OrderIdAll[j])  
@@ -188,7 +193,7 @@ function saveOrderIdAll(bizOrderIdAll){
     
     
     
-    syncSetFenPian(obj,"OrderIdAll_"+(ltb-1));
+    syncSetFenPian(obj,"OrderIdAll_"+ltb);
  
     
     if(OrderIdAll.length > 0){

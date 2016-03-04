@@ -309,10 +309,10 @@ function getOrderIndexNumArr(callback){
         if(data.OrderIdIndex){
             
             var arr = [];
-            var fenId = data.OrderIdIndex;
+            var fenId = data.OrderIdIndex+1;
             
             
-            for(var i =0;i<=fenId;i++){
+            for(var i =1;i<=fenId;i++){
                 arr.push(i.toString());
             }
             

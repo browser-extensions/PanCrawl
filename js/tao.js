@@ -3,11 +3,21 @@ function tmallElement(){
 
     var uname = PD.trim(PD('.address-detail').text()).split('，')[0];
     
-    var OcodeT = YcodeT = ZcodeT = UMsgT = YcopT = 0;
+    var  YcodeT  = "0", YcopT = "0";
     
     if(PD(".trade-detail-logistic").attr('data-mail-no')){
         YcodeT = PD(".trade-detail-logistic").attr('data-mail-no');
-        YcodeT = PD(".trade-detail-logistic").attr('data-company-name')
+        YcopT = PD(".trade-detail-logistic").attr('data-company-name');
+        
+        if(YcodeT == "—"){
+              YcodeT = "";
+          }
+          
+          if(YcopT == "—"){
+              YcopT = "";
+          }
+        
+        
     }
     
     
@@ -15,11 +25,11 @@ function tmallElement(){
     var msg = {
         type: "taobao-information",           
         uName : uname,
-        Ocode : PD(".imfor-short-dd").text(),
+        Ocode : GetQueryString("biz_order_id"),
         Ycode : YcodeT,
         Zcode : PD('.small-drop-down tr').text().replace(/\n/g,'||').replace(/\s/g,"").split('||')[2],
         UMsg : PD('.message-detail').text(),
-        Ycop : YcodeT
+        Ycop : YcopT
      };
        
         
@@ -39,10 +49,22 @@ function taobaoElement(){
     if(OcodeLen > 0){
         
        if(PD('.logistics-id').length > 0 ){
-            YcodeT = PD.trim(PD('.logistics-id').text());   
+            YcodeT = PD.trim(PD('.logistics-id').text());  
+            
+            
+            if(YcodeT == "—"){
+              YcodeT = "";
+          }
+          
+             
        }
        if(PD('.logistics-company').length > 0){
           YcopT =  PD.trim(PD('.logistics-company').text());
+          if(YcopT == "—"){
+              YcopT = "";
+          }
+          
+          
        }
         
         OcodeT = PD.trim(PD('.misc-info').text()).replace(/\n/g,'||').split('||')[4];        
@@ -58,7 +80,7 @@ function taobaoElement(){
         Ycode : YcodeT,
         Zcode : ZcodeT,
         UMsg : UMsgT,
-        Ycop : YcopT
+        Ycop : YcopT 
      };
        
         

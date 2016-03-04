@@ -174,11 +174,9 @@ function sedReload(){
 
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendRequest){
-	if(request.type!=="taobao-information")
-	return;
-    
-    
-    var obj = {"OrderId": request.Ocode.replace(/(^\s+)|(\s+$)/g,""),
+	if(request.type=="taobao-information"){
+        
+        var obj = {"OrderId": request.Ocode.replace(/(^\s+)|(\s+$)/g,""),
                 "PayId":request.Zcode.replace(/(^\s+)|(\s+$)/g,""),
                 "CompanyName":request.Ycop,
                 "PackageNum":request.Ycode,
@@ -194,15 +192,22 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendRequest){
                 '<td>'+ request.Ycop +'</td>'+
                 '</tr>';
               
-    $(".order-tbody").append(str);
-    
-    
-    postOrderInfoServer(obj,function(data){ 
+        $(".order-tbody").append(str);
         
-          
         
-    })
-    
+        postOrderInfoServer(obj,function(data){ 
+                    
+        })
+  
+    }else if(request.type=="error-orderId"){
+        
+        var str = '<li>'+ request.Ocode +'</li>';
+        rederEndTime();
+        $(".errorIdList").append(str);
+        PD(".errorIdNum").text($(".errorIdList li").length +"个");
+        
+    }
+	
 
 });
 

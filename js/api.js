@@ -74,7 +74,7 @@ var obj = {"OrderId": data.OrderId,"PayId":data.PayId,"CompanyName":data.Company
                      time: 2,
                      content: msg
                 })
-                
+                saveAlreadyCrawNum(); 
                 console.log(msg );
             },
             error:function (result, status) {

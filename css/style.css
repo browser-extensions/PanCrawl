@@ -156,3 +156,12 @@ textarea{
     padding:0 10px;
     display: inline-block;
 }
+.errorIdList{
+    font-size: 12px;
+    overflow: hidden;
+    clear: both;
+}
+.errorIdList li{
+    padding: 0 10px;
+    float: left;
+}

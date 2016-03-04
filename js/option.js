@@ -7,7 +7,7 @@ PD(function () {
     
         // 获取设置时间
         getSetTimeoutF(function(dTime){
-            console.log(dTime);
+           
             
             $("#setTime").val(dTime);
             
@@ -43,7 +43,7 @@ PD(function () {
                 
                 $('input:radio[value='+ type +']').attr('checked','true');
                 
-               console.log(type)
+              
            }
          
         });

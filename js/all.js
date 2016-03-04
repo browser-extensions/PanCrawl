@@ -89,15 +89,16 @@ function isOrderNull(){
    
    
    
-   if(_host == "trade.tmall.com"){
-          mmsg = tmallElement();
+   if(_host == "buyertrade.taobao.com"){
+            mmsg = taobaoElement(); 
+         
      }else if(_host == "tmtrade.yao.95095.com"){
           mmsg = tmallElement();
     }else{
-       mmsg = taobaoElement(); 
+       mmsg = tmallElement();
     }
     
-    if(mmsg.Ycode == 0 || mmsg.Ycode == "0"){
+    if(mmsg.Ycode == 0 || mmsg.Ycode == "0" || mmsg.Ycode == null  || mmsg.Ycode == undefined){
            
            orderIdDel(function(data){
                 PL.open({
@@ -107,8 +108,13 @@ function isOrderNull(){
             
            
             })
-           
-           
+           console.log(mmsg.Ocode);
+         var  errormsg = {
+            type: "error-orderId",
+            Ocode : mmsg.Ocode,  
+        };
+        
+        chrome.runtime.sendMessage(errormsg)
      
       return false;  
        
