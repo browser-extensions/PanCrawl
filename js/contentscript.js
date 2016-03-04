@@ -99,15 +99,26 @@ function getFenPianId(fenId,mmsg,tindex){
        if(data[fenId]){
             
             if(data[fenId].length == 0){
-                 
-                chrome.storage.sync.remove(["sl"],function(){
-                        PL.open({
-                            content: '没有需要抓取的订单了',
-                            time: 10
-                        });
-                })   
-                              
-                alert("没有需要抓取的订单了");
+                
+                
+              
+                
+               fenIdJian(function(n){
+                   
+                  if(n== -1){
+                      noCrawlOrder();
+                      return;
+                  } 
+                  
+                  routerUrl();
+                
+                  return;
+                  
+                  
+               });
+                
+                
+               
                      
             }
             
@@ -119,12 +130,32 @@ function getFenPianId(fenId,mmsg,tindex){
             }        
               
            
+        }else{
+            PL.open({
+                content: '订单号未找到',
+                time: 10
+            });
+            
         }
      
                                                              
     });
     
 
+}
+
+//没有需要抓取的订单了
+function noCrawlOrder(){
+    
+    chrome.storage.sync.remove(["sl"],function(){
+                PL.open({
+                    content: '没有需要抓取的订单了',
+                    time: 10
+                });
+      })   
+                              
+     alert("没有需要抓取的订单了");
+    
 }
 
 

@@ -55,7 +55,16 @@ function routerUrlTwo(fenId){
                         console.log("减少一个index表Rot2")
                 
                         fenIdJian(function(n){
+                            
+                                 
+                            if(n== -1){
+                                noCrawlOrder();
+                                return;
+                            } 
+                            
                             routerUrl();
+                            
+                           
                         });
                         
                         

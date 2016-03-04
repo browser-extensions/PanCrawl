@@ -91,8 +91,10 @@ function isOrderNull(){
    
    if(_host == "trade.tmall.com"){
           mmsg = tmallElement();
-     }else{
-          mmsg = taobaoElement();
+     }else if(_host == "tmtrade.yao.95095.com"){
+          mmsg = tmallElement();
+    }else{
+       mmsg = taobaoElement(); 
     }
     
     if(mmsg.Ycode == 0 || mmsg.Ycode == "0"){

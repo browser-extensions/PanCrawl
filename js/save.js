@@ -153,7 +153,7 @@ function saveApitOrderId(data){
 function saveOrderIdAll(bizOrderIdAll){
     
      var obj = {},
-          ind = 30;
+          ind = 10;
                
     
     

@@ -86,14 +86,21 @@ function fenIdJian(callback){
         
         var obj = {};
         
-        obj.OrderIdIndex = (num-1);
         
         
-         chrome.storage.sync.set(obj, function(data){                    
+        if(num >= 0 ){
+           obj.OrderIdIndex = (num-1); 
+           chrome.storage.sync.set(obj, function(data){                    
                      
                    callback(data) ;
                     
-        }); 
+            }); 
+        }else{
+           callback(-1); 
+        }
+        
+        
+        
         
         
     })
