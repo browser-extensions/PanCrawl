@@ -203,8 +203,11 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendRequest){
         
         var str = '<li>'+ request.Ocode +'</li>';
         rederEndTime();
-        $(".errorIdList").append(str);
-        PD(".errorIdNum").text($(".errorIdList li").length +"个");
+        
+        
+        errorIdListFor(str)
+        
+      
         
     }
 	
@@ -213,6 +216,44 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendRequest){
 
 
 
+function errorIdListFor(str) {
+    
+    
+  var sps =  $(".errorIdList li");
+  
+  
+  if(sps.length > 0){
+      
+      var isNo = true;
+      
+      for(var i=0;i< sps.length;i++){
+          
+         var id_ =   sps[i].text();
+         
+         Console.log(id_)
+          
+          if(id_ == str){
+              isNo = false;
+              Console.log("you")
+          }
+          
+      };
+      
+      
+      
+      if(isNo){
+         $(".errorIdList").append(str);
+        
+         PD(".errorIdNum").text($(".errorIdList li").length +"个");
+      }
+      
+       
+      
+  }
+  
+    
+    
+}
 
 
 // function render_search_result(result, isBulk) {

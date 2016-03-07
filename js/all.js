@@ -98,7 +98,7 @@ function isOrderNull(){
        mmsg = tmallElement();
     }
     
-    if(mmsg.Ycode == 0 || mmsg.Ycode == "0" || mmsg.Ycode == null  || mmsg.Ycode == undefined){
+    if(mmsg.Zcode == 0 || mmsg.Zcode == "0" || mmsg.Zcode == null  || mmsg.Zcode == undefined){
            
            orderIdDel(function(data){
                 PL.open({

@@ -3,17 +3,17 @@ function tmallElement(){
 
     var uname = PD.trim(PD('.address-detail').text()).split('，')[0];
     
-    var  YcodeT  = "0", YcopT = "0";
+    var  YcodeT  = "", YcopT = "";
     
     if(PD(".trade-detail-logistic").attr('data-mail-no')){
         YcodeT = PD(".trade-detail-logistic").attr('data-mail-no');
         YcopT = PD(".trade-detail-logistic").attr('data-company-name');
         
-        if(YcodeT == "—"){
+        if(YcodeT == "—" || YcodeT == undefined ||  YcodeT == null){
               YcodeT = "";
           }
           
-          if(YcopT == "—"){
+          if(YcopT == "—" || YcopT == undefined || YcopT == null){
               YcopT = "";
           }
         
@@ -43,7 +43,7 @@ function taobaoElement(){
 
    var uname = PD.trim(PD('.addr_and_note').find('dd').text()).split('，')[0];
     
-   var OcodeT = YcodeT = ZcodeT = UMsgT = YcopT = 0;
+   var OcodeT = YcodeT = ZcodeT = UMsgT = YcopT = "";
     
     var OcodeLen = PD('.misc-info').text().length;
     if(OcodeLen > 0){
@@ -52,7 +52,7 @@ function taobaoElement(){
             YcodeT = PD.trim(PD('.logistics-id').text());  
             
             
-            if(YcodeT == "—"){
+            if(YcodeT == "—" || YcodeT == undefined ||  YcodeT == null){
               YcodeT = "";
           }
           
@@ -60,7 +60,7 @@ function taobaoElement(){
        }
        if(PD('.logistics-company').length > 0){
           YcopT =  PD.trim(PD('.logistics-company').text());
-          if(YcopT == "—"){
+          if(YcopT == "—" || YcopT == undefined || YcopT == null){
               YcopT = "";
           }
           
