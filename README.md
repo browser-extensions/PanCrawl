@@ -2,6 +2,8 @@
 
 >v0.0.7
 
+修复页面出现 `客官，现在网络繁忙，请稍候再试 ` 后无法继续执行脚本
+
 - 新增需要注入脚本的页面 `https://tradearchive.taobao.com/trade/detail/trade_item_detail.htm?biz_order_id=0`
 
 
