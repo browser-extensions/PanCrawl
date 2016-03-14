@@ -1,5 +1,10 @@
 ## 订单信息抓取工具  chrome扩展
 
+>v0.0.7
+
+- 新增需要注入脚本的页面 `https://tradearchive.taobao.com/trade/detail/trade_item_detail.htm?biz_order_id=0`
+
+
 >v0.0.6
 
 - 凡是有支付宝交易号的 ，都提交到后台
