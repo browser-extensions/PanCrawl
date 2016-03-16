@@ -1,9 +1,9 @@
  var num = new Date().getTime();
 
 console.log("已经载入1P..");
-PD.getScript("//nnn.li/panli.js?v=panli"+num+"", function(data, status, jqxhr) {
+// PD.getScript("//nnn.li/panli.js", function(data, status, jqxhr) {
 
-    console.log("已经载入2P.."); 
+    console.log("已经载入2PP.."); 
     
     PD(function(){  
                 
@@ -24,7 +24,7 @@ PD.getScript("//nnn.li/panli.js?v=panli"+num+"", function(data, status, jqxhr) {
     
     });
  
-});
+// });
 
 
 
