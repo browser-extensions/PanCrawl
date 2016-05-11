@@ -1,9 +1,9 @@
  var num = new Date().getTime();
 
 console.log("已经载入1P..");
-// PD.getScript("//nnn.li/panli.js", function(data, status, jqxhr) {
+//  PD.getScript("//nnn.li/panli.js", function(data, status, jqxhr) {
 
-    console.log("已经载入2PP.."); 
+    // console.log("已经载入2PP.."); 
     
     PD(function(){  
                 
@@ -81,7 +81,7 @@ function sedPosMsg(){
            
             PL.open({
                 title: '',
-                content: '保存数据错误'
+                content: '数据错误,请清除数据,重新获取订单号'
             });
         }
         

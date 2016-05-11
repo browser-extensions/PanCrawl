@@ -1,6 +1,6 @@
 {
     "name": "淘宝订单信息抓取 By Panli",
-    "version": "0.0.8",
+    "version": "0.1.0",
     "manifest_version": 2,
     "description": "淘宝订单信息抓取 喵 By Panli @Julian",
     "icons": {

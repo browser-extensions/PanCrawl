@@ -1,57 +1,3 @@
- function setStorage(items,call){
-    chrome.storage.StorageArea.set(items, function(){
-        if(call){
-            call(); 
-        }
-    }); 
-}
- 
- 
- 
- //  设置 帐号名称
-function setUnameF(name){
-    var obj = {};
-    obj.setUname = name;
-    chrome.storage.sync.set(obj, function(data) { 
-        
-        
-    })   
-    
-}
-
-// 设置数据
-function storageSet(obj,call){
-    chrome.storage.sync.set(obj,function(data){
-        if(call){
-            call()
-        }else{
-            return data;
-        }
-    })
-}
-
- //  设置 抓取间隔时间
-function setTimeoutF(time){
-    var obj = {};
-    obj.setTimeout = time;
-    chrome.storage.sync.set(obj, function(data) { 
-        
- 
-    })   
-    
-}
-
-// 设置 账户类型
-function setNumberTypeF(ntype,callback){
-    var obj = {};
-    obj.NumberType = ntype;
-    chrome.storage.sync.set(obj, function(data) { 
-        
-        callback();
-        
-    })
-}
-
 
 
 // 设置 form 配置
@@ -136,6 +82,7 @@ function saveApitOrderId(data){
     for(var i=0;i<data.length;i++){
         
         if(data[i].TaobaoOrderId.length > 5){
+           
            arr.push(data[i].TaobaoOrderId);
         }
         

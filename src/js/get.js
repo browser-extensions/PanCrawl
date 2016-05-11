@@ -30,7 +30,7 @@ function getSetTimeoutF(callback){
         if(data.setTimeout){
             callback(data.setTimeout);
         }else{
-            callback(5000);
+            callback(10000);
         }
 
     })   

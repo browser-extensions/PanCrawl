@@ -53,6 +53,7 @@ PD(function () {
             
             var _t = $(this),
                 _Type = $("input[name='numberType']:checked").val(),
+               
                 _setTime =  $("#setTime").find("option:selected").val(),
                 _uname = $("#first_name").val().replace(/(^\s+)|(\s+$)/g,""),
                 _getUrl = $("#getDataUrl").val().replace(/(^\s+)|(\s+$)/g,""),

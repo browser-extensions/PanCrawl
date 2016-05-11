@@ -1,6 +1,16 @@
+
+
+
+
 //获取跳转的url
 function openTaoBaoUrl(ID){
-   var url = 'https://buyertrade.taobao.com/trade/detail/trade_item_detail.htm?spm=a1z09.2.0.0.Sx0xKe&bizOrderId='+ID;   
+   
+   var urlA = [
+       "https://buyertrade.taobao.com/trade/detail/trade_item_detail.htm?spm=a1z09.2.0.0.Sx0xKe&bizOrderId="
+       
+   ]
+        
+   var url = urlA[0]+ID;   
    return url;    
 }
 

@@ -102,7 +102,7 @@ function isOrderNull(){
            
            orderIdDel(function(data){
                 PL.open({
-                    content: '抓取失败',
+                    content: '抓取失败,请@Julian修复',
                     time: 2
                 });  
             
