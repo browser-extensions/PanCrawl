@@ -7,9 +7,9 @@ function readerList(data){
    
    for(var i=0;i<data.length;i++){
        
-   
+         var urlK = openTaoBaoUrl(data[i].Ocode);
          str = str + '<tr>'+
-                    '<td>'+ data[i].Ocode +'</td>'+
+                    '<td><a  target="_blank" href="'+ urlK +'">'+ data[i].Ocode +'</a></td>'+
                     '<td>'+ data[i].Zcode +'</td>'+
                     '<td>'+ data[i].uName +'</td>'+
                     '<td>'+ data[i].UMsg +' </td>'+

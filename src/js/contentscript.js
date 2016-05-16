@@ -6,6 +6,11 @@ console.log("已经载入1P..");
     // console.log("已经载入2PP.."); 
     
     PD(function(){  
+        
+        
+            setTimeout(function(){
+                
+                
                 
                 var _hostName = window.location.hostname;           
                 
@@ -20,6 +25,13 @@ console.log("已经载入1P..");
                     }
                 
                 })   
+                
+
+                
+                
+            },800);
+                
+                
     
     
     });

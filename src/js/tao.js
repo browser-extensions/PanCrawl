@@ -25,6 +25,9 @@ function tmallElement(){
         
     }
     
+   
+    
+    
     var infoD = PD("#J_trade_imfor");
     
     var uname = infoD.find(".table-list").eq(0).find(".ui-trade-label").text().split(',')[0];
@@ -34,7 +37,7 @@ function tmallElement(){
         uName : uname,
         Ocode : GetQueryString("biz_order_id"),
         Ycode : YcodeT,
-        Zcode : playCode,
+        Zcode : isNaN(playCode) ? undefined : playCode,
         UMsg : infoD.find(".table-list").eq(1).find(".ui-trade-label").text(),
         Ycop : YcopT
      };
@@ -155,6 +158,14 @@ function yaoElement(){
         
         
     }
+    
+    
+    
+    if(isNaN(playCode)){
+        playCode == '0';
+    }
+    
+    console.log(playCode);
     
     var infoD = PD("#J_trade_imfor");
     

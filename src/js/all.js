@@ -98,6 +98,7 @@ function isOrderNull(){
        mmsg = tmallElement();
     }
     
+  
     if(mmsg.Zcode == 0 || mmsg.Zcode == "0" || mmsg.Zcode == null  || mmsg.Zcode == undefined){
            
            orderIdDel(function(data){

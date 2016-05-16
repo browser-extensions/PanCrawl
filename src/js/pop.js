@@ -183,8 +183,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendRequest){
                 "BuyMessage":request.UMsg
                 }
         
-     var str = '<tr>'+
-                '<td>'+ request.Ocode +'</td>'+
+    var urlK = openTaoBaoUrl(request.Ocode);
+     var str = '<tr>'+ 
+                '<td><a target="_blank" href="'+ urlK +'" >'+ request.Ocode +'</a></td>'+
                 '<td>'+ request.Zcode +'</td>'+
                 '<td>'+ request.uName +'</td>'+
                 '<td>'+ request.UMsg +' </td>'+
@@ -201,11 +202,24 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendRequest){
   
     }else if(request.type=="error-orderId"){
         
-        var str = '<li>'+ request.Ocode +'</li>';
+        console.log(request.Ocode);
         rederEndTime();
         
+        if(request.Ocode.length > 2){
+            
+            
+             var str = '<li><a target="_blank" href="'+ openTaoBaoUrl(request.Ocode) +'">'+ request.Ocode +'</a></li>';
+
+             errorIdListFor(str)
+            
+        }else{
+            
+            errorNetwork();
+            
+            
+        }
         
-        errorIdListFor(str)
+       
         
       
         
@@ -217,41 +231,68 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendRequest){
 
 
 function errorIdListFor(str) {
+    console.log(str)
     
-    
-  var sps =  $(".errorIdList li");
+//   var sps =  $(".errorIdList li");
   
   
-  if(sps.length > 0){
+//   if(sps.length > 0){
       
-      var isNo = true;
+//       var isNo = true;
       
-      for(var i=0;i< sps.length;i++){
+//       for(var i=0;i< sps.length;i++){
           
-         var id_ =   sps[i].text();
+//          var id_ =   sps[i].text();
          
-         Console.log(id_)
+//          Console.log(id_)
           
-          if(id_ == str){
-              isNo = false;
-              Console.log("you")
-          }
+//           if(id_ == str){
+//               isNo = false;
+//               Console.log("you")
+//           }
           
-      };
+//       };
       
       
       
-      if(isNo){
+      
          $(".errorIdList").append(str);
+         
+         
+         var sps =  $(".errorIdList li");
+         
+         if(sps.length > 0){
+             
+             $("#errorIdListBox").show();
+         }
         
          PD(".errorIdNum").text($(".errorIdList li").length +"个");
-      }
+      
       
        
       
-  }
+//   }
   
     
+    
+}
+
+//网络错误次数
+function errorNetwork(){
+    
+  var num =  Number($(".errorNetwork").text());
+  
+  
+  $(".errorNetwork").text(num+1);
+  
+  if(num>0){
+      $("#errorNetworkBox").show();
+  }
+   
+   
+    
+   
+   
     
 }
 

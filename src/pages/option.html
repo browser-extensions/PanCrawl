@@ -40,10 +40,17 @@
                     <option value="7000">7秒</option>
                     <option value="10000">10秒</option>
                     <option value="12000">12秒</option>
+                    <option value="14000">14秒</option>
                     <option value="15000">15秒</option>
+                    <option value="16000">16秒</option>
+                    <option value="17000">17秒</option>
+                    <option value="18000">18秒</option>
                     <option value="20000">20秒</option>
+                    <option value="25000">25秒</option>
                     <option value="30000">30秒</option>
                     <option value="40000">40秒</option>
+                    <option value="50000">50秒</option>
+                    <option value="60000">60秒</option>
                 </select>
         
         </div>
@@ -106,9 +113,13 @@
          <span class="totalOrder" style="color: #26a69a;"></span>  ......
          <span class="totalOrderOK" style="color: #1E88E5;"></span>
      </div>
-     <div class="width:100%;">
+     <div style="width:100%;display:none;" id="errorIdListBox">
          <h6 style="color: #BB6363;font-size:14px;">抓取失败订单号：<span class="errorIdNum"></span></h6>
          <ul class="errorIdList"></ul>
+     </div>
+     <div style="width:100%;display:none;" id="errorNetworkBox">
+         <h6 style="color: #BB6363;font-size:14px;">网络错误:<span class="errorNetwork">0</span>次</h6>
+        
      </div>
     <div class="table-wrap">
         <table class="striped">
@@ -136,7 +147,7 @@
         </li>       
         <li>
             <span class="cp">
-                当前版本： <a href="javascript:void(0);"  >0.1.0</a>
+                当前版本： <a href="javascript:void(0);"  >0.1.1</a>
             </span>
         </li>
          <li>
