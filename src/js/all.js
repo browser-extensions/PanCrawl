@@ -98,6 +98,18 @@ function isOrderNull(){
        mmsg = tmallElement();
     }
     
+    
+    if(mmsg.Ocode == 0 || mmsg.Ocode == "0" ||mmsg.Ocode == null || mmsg.Ocode == undefined){
+        
+        PL.open({
+            content: '正则尝试重新抓取',
+            time: 2
+        });  
+        
+        
+        return false;  
+    }
+    
   
     if(mmsg.Zcode == 0 || mmsg.Zcode == "0" || mmsg.Zcode == null  || mmsg.Zcode == undefined){
            

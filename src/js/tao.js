@@ -30,7 +30,7 @@ function tmallElement(){
     
     var infoD = PD("#J_trade_imfor");
     
-    var uname = infoD.find(".table-list").eq(0).find(".ui-trade-label").text().split(',')[0];
+    var uname = infoD.find(".table-list").eq(0).find(".address-detail").text().split('，')[0];
     
     var msg = {
         type: "taobao-information",           
@@ -38,7 +38,7 @@ function tmallElement(){
         Ocode : GetQueryString("biz_order_id"),
         Ycode : YcodeT,
         Zcode : isNaN(playCode) ? undefined : playCode,
-        UMsg : infoD.find(".table-list").eq(1).find(".ui-trade-label").text(),
+        UMsg : infoD.find(".table-list").eq(1).find(".message-detail").text(),
         Ycop : YcopT
      };
        

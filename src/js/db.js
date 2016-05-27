@@ -203,8 +203,7 @@ function orderIdDel(call){
                 time: 2
             });  
             
-          
-            
+
             routerUrl();
            
        })

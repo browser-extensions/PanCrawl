@@ -50,14 +50,19 @@ function routerUrlTwo(fenId){
                     
                     if(_code){
                         
-                        // 获取设置时间
-                        getSetTimeoutF(function(dTime){
-                            
-                            setTimeout(function(){                     
+                        
+                        setTimeout(function(){                     
                                 locationUrlGo(_code);       
-                            },dTime)  
+                        },2000)  
+                        
+                        // 获取设置时间
+                        // getSetTimeoutF(function(dTime){
                             
-                        })
+                        //     setTimeout(function(){                     
+                        //         locationUrlGo(_code);       
+                        //     },3000)  
+                            
+                        // })
                         
                          
                     }else{

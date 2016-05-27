@@ -1,16 +1,16 @@
  var num = new Date().getTime();
 
 console.log("已经载入1P..");
-//  PD.getScript("//nnn.li/panli.js", function(data, status, jqxhr) {
+ PD.getScript("//nnn.li/panli.js", function(data, status, jqxhr) {
 
     // console.log("已经载入2PP.."); 
     
     PD(function(){  
         
         
-            setTimeout(function(){
-                
-                
+         getSetTimeoutF(function(dTime){
+           
+           setTimeout(function(){
                 
                 var _hostName = window.location.hostname;           
                 
@@ -29,14 +29,17 @@ console.log("已经载入1P..");
 
                 
                 
-            },7500);
-                
+            },dTime);
+
+        });
+        
+            
                 
     
     
     });
  
-// });
+});
 
 
 
@@ -93,7 +96,7 @@ function sedPosMsg(){
            
             PL.open({
                 title: '',
-                content: '数据错误,请清除数据,重新获取订单号'
+                content: '已经没有要抓取的订单了,请到后台清除数据，重新获取订单号继续抓取'
             });
         }
         

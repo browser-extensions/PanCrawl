@@ -83,7 +83,25 @@ function saveApitOrderId(data){
         
         if(data[i].TaobaoOrderId.length > 5){
            
-           arr.push(data[i].TaobaoOrderId);
+           var regId = data[i].TaobaoOrderId.replace(/，/g,',');
+           
+           regId = _.split(regId,',');
+           
+           if(_.isObject(regId)){
+               
+               
+               for(var j=0;j<regId.length;j++){
+                 
+                 arr.push(regId[j]); 
+               
+               }
+               
+               
+           }else{
+              arr.push(regId); 
+           }
+           
+           
         }
         
     }
@@ -91,7 +109,7 @@ function saveApitOrderId(data){
     
     saveOrderIdAll(arr);
     
-    console.log(arr);
+    // console.log(arr);
 
 }
 
@@ -101,7 +119,8 @@ function saveOrderIdAll(bizOrderIdAll){
     
      var obj = {},
           ind = 50;
-               
+     
+     var Thread = 2;  //打开浏览器线程        
     
     
     var OrderIdAll = _.compact(bizOrderIdAll),
@@ -114,7 +133,7 @@ function saveOrderIdAll(bizOrderIdAll){
         
         obj.OrderIdIndex = ltb;
         
-        console.log(obj.OrderIdIndex);
+        // console.log(obj.OrderIdIndex);
         
     for(var i=1;i<=ltb;i++){
       
@@ -132,7 +151,7 @@ function saveOrderIdAll(bizOrderIdAll){
            
         }
         
-     console.log(obj["OrderIdAll_"+i])
+        console.log(obj["OrderIdAll_"+i])
         
         
     }
