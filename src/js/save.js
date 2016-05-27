@@ -81,7 +81,7 @@ function saveApitOrderId(data){
     
     for(var i=0;i<data.length;i++){
         
-        if(data[i].TaobaoOrderId.length > 5){
+        if(data[i].TaobaoOrderId.length == 16){
            
            var regId = data[i].TaobaoOrderId.replace(/，/g,',');
            
@@ -98,6 +98,7 @@ function saveApitOrderId(data){
                
                
            }else{
+               
               arr.push(regId); 
            }
            
