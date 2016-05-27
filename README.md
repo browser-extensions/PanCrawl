@@ -1,5 +1,8 @@
 ## 订单信息抓取工具  chrome扩展
 
+License
+
+MIT @Julian (zanjser@163.com)
 
 >v0.1.2
 
