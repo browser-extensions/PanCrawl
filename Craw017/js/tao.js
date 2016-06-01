@@ -53,6 +53,7 @@ function tmallElement(){
         Ycode : YcodeT,
         Zcode : isNaN(playCode) ? undefined : playCode,
         UMsg : liuyan,
+        sta : 100,
         Ycop : YcopT
      };
        
@@ -66,6 +67,20 @@ function tmallElement(){
 function taobaoElement(){
     
    var OcodeT = YcodeT = ZcodeT = UMsgT = YcopT = uname = "";
+   
+   
+   if(PD("#mytaobao-panel").text().trim() == "你无权查看此交易!"){
+       
+       var msg = {
+        type: "taobao-information",
+        Ocode : GetQueryString("bizOrderId") ? GetQueryString("bizOrderId") : GetQueryString("biz_order_id"),
+        sta : 110
+     };
+       
+       
+       return msg;
+   }
+   
    
    if(PD("#detail-panel .alilay-num").length < 1){
         uname = PD.trim(PD('.addr_and_note').find('dd').text()).split('，')[0];
@@ -136,6 +151,7 @@ function taobaoElement(){
         Ycode : YcodeT,
         Zcode : ZcodeT,
         UMsg : UMsgT,
+        sta : 100,
         Ycop : YcopT 
      };
        

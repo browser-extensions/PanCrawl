@@ -203,25 +203,24 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendRequest){
     }else if(request.type=="error-orderId"){
         
         console.log(request.Ocode);
+        
+        
         rederEndTime();
         
-        if(request.Ocode.length > 2){
+        // if(request.Ocode.length > 2){
             
             
              var str = '<li><a target="_blank" href="'+ openTaoBaoUrl(request.Ocode) +'">'+ request.Ocode +'</a></li>';
 
              errorIdListFor(str)
             
-        }else{
+        // }else{
             
-            errorNetwork();
+        //     errorNetwork();
             
             
-        }
+        // }
         
-       
-        
-      
         
     }
 	

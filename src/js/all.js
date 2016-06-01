@@ -99,6 +99,25 @@ function isOrderNull(){
     }
     
     
+    if(mmsg.sta == 110){
+        
+         orderIdDel(function(data){
+                PL.open({
+                    content: '次订单不是本账号,请到后台复查该订单所属账号',
+                    time: 2
+                });  
+            })
+            
+     
+            
+      errorIDMessg(mmsg.Ocode)
+     
+      return false; 
+        
+        
+    }
+    
+    
     if(mmsg.Ocode == 0 || mmsg.Ocode == "0" ||mmsg.Ocode == null || mmsg.Ocode == undefined){
         
         PL.open({
@@ -118,16 +137,9 @@ function isOrderNull(){
                     content: '抓取失败,请@Julian修复',
                     time: 2
                 });  
-            
-           
             })
-           console.log(mmsg.Ocode);
-         var  errormsg = {
-            type: "error-orderId",
-            Ocode : mmsg.Ocode,  
-        };
-        
-        chrome.runtime.sendMessage(errormsg)
+      
+        errorIDMessg(mmsg.Ocode)
      
       return false;  
        
@@ -139,6 +151,17 @@ function isOrderNull(){
 }
 
 
+
+function errorIDMessg(id){
+    
+    var  errormsg = {
+            type:"error-orderId",
+            Ocode:id,  
+        };
+        
+    chrome.runtime.sendMessage(errormsg)
+
+}
 
 
 
