@@ -1,6 +1,6 @@
 {
     "name": "淘宝订单信息抓取 By Panli",
-    "version": "0.1.7",
+    "version": "0.1.8",
     "manifest_version": 2,
     "description": "淘宝订单信息抓取 喵 By Panli @Julian",
     "icons": {
@@ -17,7 +17,7 @@
 
     "background": {
         "persistent": true,
-        "scripts": [          
+        "scripts": [
             "js/all.js"
         ]
     },
@@ -32,31 +32,29 @@
         "alarms",
         "webNavigation",
         "\u003Call_urls\u003E"
-    ],   
+    ],
 
-    "content_scripts": [
-        {
-            "matches": [
-                "*://buyertrade.taobao.com/trade/detail/trade_item_detail.htm*",
-                "*://tmtrade.yao.95095.com/detail/order_detail.htm*",
-                "*://trade.tmall.com/detail/orderDetail.htm?*",       
-                "*://trade.tmall.hk/detail/order_detail.htm?*",   
-                "*://tradearchive.taobao.com/trade/detail/*"         
-            ],
-            "js": [
-               "libs/panli.js",
-               "libs/lodash.js",
-               "js/all.js",
-               "js/api.js",
-               "js/get.js",
-               "js/save.js",
-               "js/url.js",
-               "js/tao.js",
-               "js/db.js",
-               "js/contentscript.js"
-            ],
-            "run_at": "document_end"
-        }
-    ]
+    "content_scripts": [{
+        "matches": [
+            "*://buyertrade.taobao.com/trade/detail/trade_item_detail.htm*",
+            "*://tmtrade.yao.95095.com/detail/order_detail.htm*",
+            "*://trade.tmall.com/detail/orderDetail.htm?*",
+            "*://trade.tmall.hk/detail/order_detail.htm?*",
+            "*://tradearchive.taobao.com/trade/detail/*"
+        ],
+        "js": [
+            "libs/panli.js",
+            "libs/lodash.js",
+            "js/all.js",
+            "js/api.js",
+            "js/get.js",
+            "js/save.js",
+            "js/url.js",
+            "js/tao.js",
+            "js/db.js",
+            "js/contentscript.js"
+        ],
+        "run_at": "document_end"
+    }]
 
 }

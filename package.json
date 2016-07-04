@@ -1,0 +1,23 @@
+{
+  "name": "pan-crawl",
+  "version": "1.0.0",
+  "description": "#### License",
+  "main": "index.js",
+  "scripts": {
+    "pages": "gh-pages -d ./",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/browser-extensions/PanCrawl.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/browser-extensions/PanCrawl/issues"
+  },
+  "homepage": "https://github.com/browser-extensions/PanCrawl#readme",
+  "devDependencies": {
+    "gh-pages": "^0.11.0"
+  }
+}
