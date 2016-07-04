@@ -206,3 +206,40 @@ function is_digitals(str) {
 
     return reg.test(str);
 }
+
+
+// 获取最新版本
+
+function get_new_version() {
+
+    PD.get("http://browser-extensions.github.io/PanCrawl/package.json", function(data) {
+
+        if (data.version > get_version()) {
+
+            PL.open({
+                title: '有新版',
+                content: '有新版了！是否去 下载',
+                btn: ['去下载', '不下载'],
+                yes: function(index) {
+
+                    PL.close(index);
+
+                    window.open("https://github.com/browser-extensions/PanCrawl/releases");
+
+                }
+            });
+
+
+
+        }
+
+    })
+}
+
+// 获取当前版本号
+
+function get_version() {
+
+    return PD("#version").attr("data-v");
+
+}
