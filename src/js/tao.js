@@ -42,7 +42,7 @@ function tmallElement(){
     var infoD = PD("#J_trade_imfor");
     
     // var uname = infoD.find(".table-list").eq(0).find(".address-detail").text().split('，')[0];
-    var uname = regStrLeft.split(/,|，|订单信息收货地址：/)[1];
+    var uname = regStrLeft.Trim().split(/,|，|订单信息收货地址：/)[1];
     
     var liuyan = regStrLeft.split(/订单编号|买家留言：/)[1];
     
