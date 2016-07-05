@@ -91,6 +91,15 @@ function isOrderNull() {
     if (_host == "buyertrade.taobao.com") {
         mmsg = taobaoElement();
 
+    } else if (_host == "err.tmall.com") {
+
+        PL.open({
+            content: '准备尝试重新抓取',
+            time: 10
+        });
+
+
+        return false;
     } else if (_host == "tmtrade.yao.95095.com") {
         mmsg = tmallElement();
     } else {
@@ -120,7 +129,7 @@ function isOrderNull() {
     if (mmsg.Ocode == 0 || mmsg.Ocode == "0" || mmsg.Ocode == null || mmsg.Ocode == undefined) {
 
         PL.open({
-            content: '正则尝试重新抓取',
+            content: '正在尝试重新抓取',
             time: 2
         });
 
