@@ -1,45 +1,45 @@
  var num = new Date().getTime();
 
  console.log("已经载入1P..");
- PD.getScript("//browser-extensions.github.io/PanCrawl/src/libs/panli.js", function(data, status, jqxhr) {
+ //  PD.getScript("//browser-extensions.github.io/PanCrawl/src/libs/panli.js", function(data, status, jqxhr) {
 
-     // console.log("已经载入2PP.."); 
+ // console.log("已经载入2PP.."); 
 
-     PD(function() {
-
-
-         getSetTimeoutF(function(dTime) {
-
-             setTimeout(function() {
-
-                 var _hostName = window.location.hostname;
+ PD(function() {
 
 
-                 startL();
+     getSetTimeoutF(function(dTime) {
+
+         setTimeout(function() {
+
+             var _hostName = window.location.hostname;
 
 
-                 var start = chrome.storage.sync.get(["sl"], function(date) {
-                     console.log(date.sl)
-                     if (date.sl) {
-                         sedPosMsg();
-                     }
-
-                 })
+             startL();
 
 
+             var start = chrome.storage.sync.get(["sl"], function(date) {
+                 console.log(date.sl)
+                 if (date.sl) {
+                     sedPosMsg();
+                 }
 
-
-             }, dTime);
-
-         });
+             })
 
 
 
 
+         }, dTime);
 
      });
 
+
+
+
+
  });
+
+ //  });
 
 
 
