@@ -4,6 +4,10 @@
 
 MIT @Julian (zanjser@163.com)
 
+>v0.2.3
+  - 淘宝 url 新增，页面结构渲染新增 React 渲染模式
+    - url 新增 `trade.taobao.com/trade/detail/trade_order_detail.htm`
+    - 由于淘宝页面渲染 采用 2 种不同的渲染模式，所有根据淘宝的渲染模板 匹配 不同的抓取信息方案
 
 > v0.2.2
   - 天猫订单信息通信报错
