@@ -50,6 +50,9 @@ function tmallElement() {
 
     var liuyan = regStrLeft.split(/订单编号|买家留言：/)[1];
 
+
+
+
     var msg = {
         type: "taobao-information",
         uName: uname,
@@ -86,9 +89,9 @@ function taobaoElement() {
     }
 
 
-    if (PD(".addr_and_note").length > 0) {
+    if (PD(".addr_and_note").length > 0 || PD(".order-dashboard").length >0) {
 
-        var msg = taobaoStrOld();
+        var msg = taobaoStrOldRx();
 
         return msg;
     } else {
@@ -137,7 +140,45 @@ function taobaoStrReact() {
         Ycop: YcopT
     };
 
+    console.log(msg);
+
     return msg;
+
+}
+
+
+function taobaoStrOldRx() {
+     var OcodeT = YcodeT = ZcodeT = UMsgT = YcopT = uname = "";
+
+     
+    var Pt = PD("#J_TabView").text().replace(/\n/g, '');
+
+    ZcodeT = Pt.split(/支付宝交易号|发货时间|创建时间/)[1].replace(/：|:+/g, "").trim();
+    OcodeT = Pt.split(/订单编号|支付宝交易号/)[1].replace(/：|:+/g, "").trim();
+    UMsgT =  Pt.split('消费者热线')[1] ? Pt.split('买家留言')[1].split('消费者热线')[0].replace(/：|:+/g, "").trim() : Pt.split('买家留言')[1].split('卖家信息')[0].replace(/：|:+/g, "").trim();
+    uname =  Pt.split(/收货地址|买家留言/)[1].split('，')[0].replace(/：|:+/g, "").trim();
+
+    var expT = PD(".logistics-list").text().replace(/\n/g, '');
+
+    YcopT = expT.split(/物流公司|运单号/)[1].replace(/：|:+/g, "").trim();
+    YcodeT = expT.split(/运单号/)[1].split(/\s/)[1].replace(/：|:+/g, "").trim();
+
+    YcodeT == "—" ? YcodeT = "" : "";
+    YcopT == "—" ? YcopT = "" : "";
+
+    var msg = {
+        type: "taobao-information",
+        uName: uname,
+        Ocode: OcodeT,
+        Ycode: YcodeT,
+        Zcode: ZcodeT,
+        UMsg: UMsgT,
+        sta: 100,
+        Ycop: YcopT
+    };
+
+    return msg;
+
 
 }
 
