@@ -119,19 +119,11 @@ function taobaoStrReact() {
 
     var taobaoStr = PD("#detail-panel").text().replace(/<script.*?>.*?<\/script>/ig, '').replace(/\n/g, '');
 
-    try{
-
-        taobaoStr.split(/订单信息收货地址：|运送方式/) ? uname = taobaoStr.split(/订单信息收货地址：|运送方式/)[1].split('，')[0] : "";
-        taobaoStr.split(/订单编号:|支付宝交易号/) ? OcodeT = taobaoStr.split(/订单编号:|支付宝交易号/)[1] : "";
-        taobaoStr.split(/运单号码：|有疑问可咨询/) ? YcodeT = taobaoStr.split(/运单号码：|有疑问可咨询/)[1] : "";
-        taobaoStr.split(/物流公司：|运单号/) ? YcopT = taobaoStr.split(/物流公司：|运单号/)[1] : "";
-        taobaoStr.split(/支付宝交易号:|创建时间/) ? ZcodeT = taobaoStr.split(/支付宝交易号:|创建时间/)[1] : "";
-
-    }catch(err){
-        console.log(err);
-    }
-
-   
+    taobaoStr.split(/订单信息收货地址：|运送方式/) ? uname = taobaoStr.split(/订单信息收货地址：|运送方式/)[1].split('，')[0] : "";
+    taobaoStr.split(/订单编号:|支付宝交易号/) ? OcodeT = taobaoStr.split(/订单编号:|支付宝交易号/)[1] : "";
+    taobaoStr.split(/运单号码：|有疑问可咨询/) ? YcodeT = taobaoStr.split(/运单号码：|有疑问可咨询/)[1] : "";
+    taobaoStr.split(/物流公司：|运单号/) ? YcopT = taobaoStr.split(/物流公司：|运单号/)[1] : "";
+    taobaoStr.split(/支付宝交易号:|创建时间/) ? ZcodeT = taobaoStr.split(/支付宝交易号:|创建时间/)[1] : "";
 
     YcodeT == "—" ? YcodeT = "" : "";
     YcopT == "—" ? YcopT = "" : "";
