@@ -97,7 +97,7 @@ function taobaoElement() {
     } else {
 
 
-        var msg = taobaoStrReact();
+        var msg = taobaoStrOldRx();
         console.log(msg)
         return msg;
     }
