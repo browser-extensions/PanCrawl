@@ -102,6 +102,7 @@ function appMain(){
 
      if (isOrderNull() == false) {
 
+
          routerUrl();
 
          return
@@ -110,6 +111,7 @@ function appMain(){
      var mmsg = isOrderNull();
 
      chrome.runtime.sendMessage(mmsg);
+
 
      getOrderIndexNum(function(num) {
          console.log(num);

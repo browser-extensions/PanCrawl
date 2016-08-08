@@ -1,6 +1,11 @@
 
 $(function () {
-   
+
+// 判断是否需要清理数据
+ if(LocalDay.isClear()){
+     clearDB();
+ }
+
 //开始
   $("#startId").on("click",function(){
      contentScript();
@@ -54,9 +59,6 @@ $(function () {
          Wiwaa : ["http://hezuo.panli.com/plugins/GetTaobaoOrder.ashx",
          "http://hezuo.panli.com/plugins/SaveTaobaoLogisticsInfo.ashx"]         
      };
-     
-     
-     
      
        
       if(typ == "1"){

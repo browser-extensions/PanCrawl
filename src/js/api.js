@@ -17,7 +17,6 @@ function getServeApiCode(name){
                     
                     PL.closeAll();
                     
-                    
                     if(data.length>0){
                         console.log(data.length);
                        // var newD = _.sortBy(data, 'TaobaoOrderId', function(o) {
