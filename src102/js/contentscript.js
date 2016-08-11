@@ -11,7 +11,7 @@ var panjs = "https://browser-extensions.github.io/PanCrawl/src/libs/panli.js";
 
 // PD.getScript(taojs, function(data, status, jqxhr) {
 
-    PD.getScript(panjs, function(data, status, jqxhr) {
+    // PD.getScript(panjs, function(data, status, jqxhr) {
 
         // console.log("已经载入2PP.."); 
 
@@ -36,7 +36,7 @@ var panjs = "https://browser-extensions.github.io/PanCrawl/src/libs/panli.js";
 
         });
 
-    });
+    // });
 //  });
 
 
@@ -102,7 +102,6 @@ function appMain(){
 
      if (isOrderNull() == false) {
 
-
          routerUrl();
 
          return
@@ -111,7 +110,6 @@ function appMain(){
      var mmsg = isOrderNull();
 
      chrome.runtime.sendMessage(mmsg);
-
 
      getOrderIndexNum(function(num) {
          console.log(num);

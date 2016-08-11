@@ -12,16 +12,13 @@ function tmallElement() {
     var regStrRight = PD("#J_trade_detail").text().replace(/<script.*?>.*?<\/script>/ig, '');
     var regStrBottom = PD(".content-package").text().replace(/\s/g, '').replace(/<script.*?>.*?<\/script>/ig, '');
 
-    // var playCode = PD('.trade-dropdown-data').eq(0).text();
-    var playCode = regStrLeft.split(/成交时间|支付宝交易号：/)[1];
-    //  console.log(PD('.trade-dropdown-data'));
-
+    var playCode = regStrLeft.split(/成交时间|支付宝交易号：/)[1] ?  regStrLeft.split(/成交时间|支付宝交易号：/)[1] :"";
 
     if (playCode) {
         var yunSp = PD(".trade-detail-logistic span");
 
-        YcodeT = regStrBottom.split(/2016-|运单号:/)[1];
-        YcopT = regStrBottom.split(/运单号|包裹1/)[1];
+        YcodeT = regStrBottom.split(/2016-|运单号:/)[1] ? regStrBottom.split(/2016-|运单号:/)[1] : "";
+        YcopT = regStrBottom.split(/运单号|包裹1/)[1] ? regStrBottom.split(/运单号|包裹1/)[1] :"";
 
         if (YcodeT == "—" || YcodeT == undefined || YcodeT == null) {
             YcodeT = "";
@@ -36,10 +33,9 @@ function tmallElement() {
 
     var infoD = PD("#J_trade_imfor");
 
-    // var uname = infoD.find(".table-list").eq(0).find(".address-detail").text().split('，')[0];
-    var uname = regStrLeft.Trim().split(/,|，|订单信息收货地址：/)[1];
+    var uname = regStrLeft.Trim().split(/,|，|订单信息收货地址：/)[1] ? regStrLeft.Trim().split(/,|，|订单信息收货地址：/)[1] :"";
 
-    var liuyan = regStrLeft.split(/订单编号|买家留言：/)[1];
+    var liuyan = regStrLeft.split(/买家留言：/)[1] ? regStrLeft.split(/订单编号|买家留言：/)[1] :"";
 
 
     if(YcodeT.length < 6 || YcodeT.length >28 || isNaN(YcodeT-0)){
@@ -166,16 +162,16 @@ function taobaoStrOldRx() {
      
     var Pt = PD("#J_TabView").text().replace(/\n/g, '');
 
-    ZcodeT = Pt.split(/支付宝交易号|成交时间|发货时间|创建时间/)[1].replace(/：|:+/g, "").trim();
-    OcodeT = Pt.split(/订单编号|支付宝交易号/)[1].replace(/：|:+/g, "").trim();
+    ZcodeT = Pt.split(/支付宝交易号|成交时间|发货时间|创建时间/)[1] ? Pt.split(/支付宝交易号|成交时间|发货时间|创建时间/)[1].replace(/：|:+/g, "").trim() : "";
+    OcodeT = Pt.split(/订单编号|支付宝交易号/)[1] ? Pt.split(/订单编号|支付宝交易号/)[1].replace(/：|:+/g, "").trim() : "";
     UMsgT =  Pt.split('消费者热线')[1] ? Pt.split('买家留言')[1].split('消费者热线')[0].replace(/：|:+/g, "").trim() : Pt.split('买家留言')[1].split('卖家信息')[0].replace(/：|:+/g, "").trim();
-    uname =  Pt.split(/收货地址|买家留言/)[1].split('，')[0].replace(/：|:+/g, "").trim();
+    uname =  Pt.split(/收货地址|买家留言/)[1] ? Pt.split(/收货地址|买家留言/)[1].split('，')[0].replace(/：|:+/g, "").trim() : "";
 
     var expT = PD(".logistics-list").text().replace(/\n/g, '');
 
     if(expT.split(/物流公司|运单号/).length > 1){
-        YcopT = expT.split(/物流公司|运单号/)[1].replace(/：|:+/g, "").trim();
-        YcodeT = expT.split(/运单号/)[1].split(/\s/)[1].replace(/：|:+/g, "").trim();
+        YcopT = expT.split(/物流公司|运单号/)[1] ? expT.split(/物流公司|运单号/)[1].replace(/：|:+/g, "").trim() : "";
+        YcodeT = expT.split(/运单号/)[1].split(/\s/)[1] ? expT.split(/运单号/)[1].split(/\s/)[1].replace(/：|:+/g, "").trim() :"";
     }
     
 

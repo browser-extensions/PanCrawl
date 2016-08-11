@@ -17,11 +17,18 @@ function getServeApiCode(name){
                     
                     PL.closeAll();
                     
-                    
                     if(data.length>0){
                         console.log(data.length);
-                        
-                        saveApitOrderId(data);
+                       // var newD = _.sortBy(data, 'TaobaoOrderId', function(o) {
+                       //    return o;
+                       //  });
+                       // var newD = _.sortBy(data, ['TaobaoOrderId']);
+
+                      var newD = _.sortBy(data, function(item) {
+                          return -item.TaobaoOrderId;
+                        });
+                      console.log(newD)
+                        saveApitOrderId(newD);
                         
                         console.log(msg)
                         
