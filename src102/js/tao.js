@@ -77,13 +77,13 @@ function taobaoElement() {
 
 
     if (window.location.hostname == "trade.taobao.com") {
-
+        console.log('Reactjs');
         var msg = taobaoStrReact();
-
+        console.log(msg)
         return msg;
     } else {
 
-
+        console.log('old');
         var msg = taobaoStrOldRx();
         console.log(msg)
         return msg;
@@ -101,7 +101,7 @@ function taobaoStrReact() {
 
     try{
 
-        taobaoStr.split(/订单信息收货地址：|运送方式/) ? uname = taobaoStr.split(/订单信息收货地址：|运送方式/)[1].split('，')[0] : "";
+        taobaoStr.split(/收货地址：|运送方式/) ? uname = taobaoStr.split(/收货地址：|运送方式/)[1].split(/[，,]/)[0] : "";
         taobaoStr.split(/订单编号:|支付宝交易号/) ? OcodeT = taobaoStr.split(/订单编号:|支付宝交易号/)[1] : "";
         taobaoStr.split(/支付宝交易号:|创建时间/) ? ZcodeT = taobaoStr.split(/支付宝交易号:|创建时间/)[1] : "";
 
