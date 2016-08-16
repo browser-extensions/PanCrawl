@@ -77,13 +77,13 @@ function taobaoElement() {
 
 
     if (window.location.hostname == "trade.taobao.com") {
-        console.log('Reactjs');
+
         var msg = taobaoStrReact();
-        console.log(msg)
+
         return msg;
     } else {
 
-        console.log('old');
+
         var msg = taobaoStrOldRx();
         console.log(msg)
         return msg;
@@ -101,7 +101,7 @@ function taobaoStrReact() {
 
     try{
 
-        taobaoStr.split(/收货地址：|运送方式/) ? uname = taobaoStr.split(/收货地址：|运送方式/)[1].split(/[，,]/)[0] : "";
+        taobaoStr.split(/订单信息收货地址：|运送方式/) ? uname = taobaoStr.split(/订单信息收货地址：|运送方式/)[1].split('，')[0] : "";
         taobaoStr.split(/订单编号:|支付宝交易号/) ? OcodeT = taobaoStr.split(/订单编号:|支付宝交易号/)[1] : "";
         taobaoStr.split(/支付宝交易号:|创建时间/) ? ZcodeT = taobaoStr.split(/支付宝交易号:|创建时间/)[1] : "";
 
@@ -159,29 +159,20 @@ function taobaoStrReact() {
 function taobaoStrOldRx() {
      var OcodeT = YcodeT = ZcodeT = UMsgT = YcopT = uname = "";
 
-     var tbview =  PD("#J_TabView");
      
-     if(tbview.length >0){
+    var Pt = PD("#J_TabView").text().replace(/\n/g, '');
 
+    ZcodeT = Pt.split(/支付宝交易号|成交时间|发货时间|创建时间/)[1] ? Pt.split(/支付宝交易号|成交时间|发货时间|创建时间/)[1].replace(/：|:+/g, "").trim() : "";
+    OcodeT = Pt.split(/订单编号|支付宝交易号/)[1] ? Pt.split(/订单编号|支付宝交易号/)[1].replace(/：|:+/g, "").trim() : "";
+    UMsgT =  Pt.split('消费者热线')[1] ? Pt.split('买家留言')[1].split('消费者热线')[0].replace(/：|:+/g, "").trim() : Pt.split('买家留言')[1].split('卖家信息')[0].replace(/：|:+/g, "").trim();
+    uname =  Pt.split(/收货地址|买家留言/)[1] ? Pt.split(/收货地址|买家留言/)[1].split('，')[0].replace(/：|:+/g, "").trim() : "";
 
-        var Pt = tbview.text().replace(/\n/g, '');
+    var expT = PD(".logistics-list").text().replace(/\n/g, '');
 
-        ZcodeT = Pt.split(/支付宝交易号|成交时间|发货时间|创建时间/)[1] ? Pt.split(/支付宝交易号|成交时间|发货时间|创建时间/)[1].replace(/：|:+/g, "").trim() : "";
-        OcodeT = Pt.split(/订单编号|支付宝交易号/)[1] ? Pt.split(/订单编号|支付宝交易号/)[1].replace(/：|:+/g, "").trim() : "";
-        UMsgT =  Pt.split('消费者热线')[1] ? Pt.split('买家留言')[1].split('消费者热线')[0].replace(/：|:+/g, "").trim() : Pt.split('买家留言')[1].split('卖家信息')[0].replace(/：|:+/g, "").trim();
-        uname =  Pt.split(/收货地址|买家留言/)[1] ? Pt.split(/收货地址|买家留言/)[1].split('，')[0].replace(/：|:+/g, "").trim() : "";
-
-        var expT = PD(".logistics-list").text().replace(/\n/g, '');
-
-        if(expT.split(/物流公司|运单号/).length > 1){
-            YcopT = expT.split(/物流公司|运单号/)[1] ? expT.split(/物流公司|运单号/)[1].replace(/：|:+/g, "").trim() : "";
-            YcodeT = expT.split(/运单号/)[1].split(/\s/)[1] ? expT.split(/运单号/)[1].split(/\s/)[1].replace(/：|:+/g, "").trim() :"";
-        }
-
-
-     }
-
-   
+    if(expT.split(/物流公司|运单号/).length > 1){
+        YcopT = expT.split(/物流公司|运单号/)[1] ? expT.split(/物流公司|运单号/)[1].replace(/：|:+/g, "").trim() : "";
+        YcodeT = expT.split(/运单号/)[1].split(/\s/)[1] ? expT.split(/运单号/)[1].split(/\s/)[1].replace(/：|:+/g, "").trim() :"";
+    }
     
 
     YcodeT == "—" ? YcodeT = "" : "";
@@ -281,4 +272,105 @@ function taobaoStrOld() {
     };
 
     return msg;
+}
+
+
+// 955大药房
+function yaoElement() {
+
+    var YcodeT = "",
+        YcopT = "";
+
+
+    var playCode = PD('.trade-dropdown-data').eq(0).text();
+    console.log(PD('.trade-dropdown-data'));
+    if (playCode) {
+        var yunSp = PD(".trade-detail-logistic span");
+
+        YcodeT = yunSp.eq(2).text();
+        YcopT = yunSp.eq(0).text();
+
+        if (YcodeT == "—" || YcodeT == undefined || YcodeT == null) {
+            YcodeT = "";
+        }
+
+        if (YcopT == "—" || YcopT == undefined || YcopT == null) {
+            YcopT = "";
+        }
+
+
+    }
+
+
+
+    if (isNaN(playCode)) {
+        playCode == '0';
+    }
+
+    console.log(playCode);
+
+    var infoD = PD("#J_trade_imfor");
+
+    var uname = infoD.find(".table-list").eq(0).find(".ui-trade-label").text().split(',')[0];
+
+    var msg = {
+        type: "taobao-information",
+        uName: uname,
+        Ocode: GetQueryString("biz_order_id"),
+        Ycode: YcodeT,
+        Zcode: playCode,
+        UMsg: infoD.find(".table-list").eq(1).find(".ui-trade-label").text(),
+        Ycop: YcopT
+    };
+
+
+    return msg;
+
+
+
+}
+
+// 1688
+
+function alibabaElement() {
+
+
+
+    var uname = PD.trim(PD('.address-detail').text()).split('，')[0];
+
+    var YcodeT = "",
+        YcopT = "";
+
+    if (PD(".trade-detail-logistic").attr('data-mail-no')) {
+        YcodeT = PD(".trade-detail-logistic").attr('data-mail-no');
+        YcopT = PD(".trade-detail-logistic").attr('data-company-name');
+
+        if (YcodeT == "—" || YcodeT == undefined || YcodeT == null) {
+            YcodeT = "";
+        }
+
+        if (YcopT == "—" || YcopT == undefined || YcopT == null) {
+            YcopT = "";
+        }
+
+
+    }
+
+
+
+    var msg = {
+        type: "taobao-information",
+        uName: uname,
+        Ocode: GetQueryString("biz_order_id"),
+        Ycode: YcodeT,
+        Zcode: PD('.small-drop-down tr').text().replace(/\n/g, '||').replace(/\s/g, "").split('||')[2],
+        UMsg: PD('.message-detail').text(),
+        Ycop: YcopT
+    };
+
+
+    return msg;
+
+
+
 }
